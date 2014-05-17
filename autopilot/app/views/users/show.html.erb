@@ -1,0 +1,30 @@
+<!-- TODO: make this a partial -->
+
+
+<h2>Entries</h2>
+<ul class="entries">
+  <% @entries.each do |entry| %>
+    <li>
+    <h5><%= entry.category %></h5>
+
+    <p><%= link_to entry.content, "fuck you ruby" %></p>
+    </li>
+  <% end %>
+</ul>
+
+
+
+<!-- TODO: make this a partial -->
+
+
+<h2>Project</h2>
+<ul class="projects">
+  <% @projects.each do |project| %>
+    <li>
+      <h4><%= link_to project.title, "/users/#{user.id}/projects/#{project.id}" %></h4>
+      <p>
+        <%= project.logline %>
+      </p>
+    </li>
+  <% end %>
+</ul>

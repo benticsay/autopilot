@@ -1,0 +1,24 @@
+<%= form_for project_local do |f| %>
+  <%= f.text_field :title, {placeholder: "title"} %>
+  <%= f.text_field :logline, {placeholder: "logline"} %>
+  <%= f.submit %>
+<% end %>
+
+
+
+<%= render partial: "projectform", locals: { project_local: @project } %>
+
+
+
+<%= form_for @entry, url: "/users/#{user.id}/entries", method: "POST" do |f| %>
+  <%= f.text_field :category, {placeholder: "category"} %>
+  <%= f.text_field :content, {placeholder: "content"} %>
+  <%= f.submit %>
+<% end %>
+
+
+<%= form_for @project, url: "/users/#{user.id}/projects", method: "POST" do |f| %>
+  <%= f.text_field :title, {placeholder: "title"} %>
+  <%= f.text_field :logline, {placeholder: "logline"} %>
+  <%= f.submit %>
+<% end %>
