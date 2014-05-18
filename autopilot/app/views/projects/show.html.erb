@@ -14,8 +14,10 @@
 <p>
 	<% @project.entries.each do |entry| %>
 	    <li>
-	    <p><%= entry.content %></p>
-	    <%= link_to "edit post", "/users/#{@user.id}/projects/#{@project.id}/entries/#{id}" %>
+	    <p><%= link_to entry.content, "/users/#{params[:user_id]}/entries/#{params[:id]}" %></p>
+
+
+
 		</li>
 	<% end %>
 </p>

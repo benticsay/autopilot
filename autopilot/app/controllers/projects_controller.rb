@@ -14,9 +14,7 @@ class ProjectsController < ApplicationController
 		Project.create(project_attributes)
 
 
-
-# COME BACK TO THIS REDIRECT
-		# redirect_to "/users/#{@user.id}/projects/#{@project.id}"
+		redirect_to "/users/#{params[:user_id]}"
 		
 	end
 
@@ -26,10 +24,16 @@ class ProjectsController < ApplicationController
 
 	def update
 		@project = Project.find(params[:id])
+		@project.update_attributes(project_attributes)
+
+		redirect_to
 	end
 
 	def destroy
 		@project = Project.find(params[:id])
+		@project.destroy
+
+		redirect_to
 	end
 
   private

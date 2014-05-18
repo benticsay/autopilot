@@ -1,7 +1,8 @@
 <!-- TODO: make this a partial -->
-<%= form_for @entry, url: "/users/#{@user.id}/entries", method: "POST" do |f| %>
+<%= form_for @entry, url: "/users/#{params[:user_id]}/entries", method: "POST" do |f| %>
   <%= f.text_field :category, {placeholder: "category"} %>
   <%= f.text_field :content, {placeholder: "content"} %>
+  <%= f.hidden_field :user_id, value: @user.id %>
   <%= f.submit "New Entry" %>
 <% end %>
 
@@ -12,6 +13,7 @@
     <h5><%= entry.category %></h5>
 
     <p><%= link_to entry.content, "/users/#{@user.id}/entries/#{@entry.id}" %></p>
+
     </li>
   <% end %>
 </ul>
@@ -19,7 +21,7 @@
 
 
 <!-- TODO: make this a partial -->
-<%= form_for @project, url: "/users/#{@user.id}/projects", method: "POST" do |f| %>
+<%= form_for @project, url: "/users/#{params[:user_id]}/projects", method: "POST" do |f| %>
   <%= f.text_field :title, {placeholder: "title"} %>
   <%= f.text_field :logline, {placeholder: "logline"} %>
   <%= f.submit "New Project" %>
@@ -29,7 +31,9 @@
 <ul class="projects">
   <% @projects.each do |project| %>
     <li>
-      <h4><%= link_to project.title, "/users/#{@user.id}/projects/#{@project.id}" %></h4>
+      <h4><%= link_to project.title, "/users/#{params[:user_id]}/projects/#{@project.id}", :controller => :projects, :action => :show %></h4>
+
+
       <p>
         <%= project.logline %>
       </p>
