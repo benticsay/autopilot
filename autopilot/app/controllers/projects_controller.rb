@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
 
 
+
 	def show
-	@user = User.find(params[:id])
+	@user = @current_user
 	@entry = Entry.new
 	@project = Project.find(params[:id])
 		

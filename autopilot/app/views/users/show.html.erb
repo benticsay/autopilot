@@ -2,7 +2,7 @@
 <%= form_for @entry, url: "/users/#{params[:user_id]}/entries", method: "POST" do |f| %>
   <%= f.text_field :category, {placeholder: "category"} %>
   <%= f.text_field :content, {placeholder: "content"} %>
-  <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.hidden_field :user_id, value: params[:id] %>
   <%= f.submit "New Entry" %>
 <% end %>
 
@@ -12,7 +12,7 @@
     <li>
     <h5><%= entry.category %></h5>
 
-    <p><%= link_to entry.content, "/users/#{@user.id}/entries/#{@entry.id}" %></p>
+    <p><%= link_to entry.content, "/users/#{params[:id]}/entries/#{entry.id}" %></p>
 
     </li>
   <% end %>
@@ -24,6 +24,7 @@
 <%= form_for @project, url: "/users/#{params[:user_id]}/projects", method: "POST" do |f| %>
   <%= f.text_field :title, {placeholder: "title"} %>
   <%= f.text_field :logline, {placeholder: "logline"} %>
+  <%= f.hidden_field :user_id, value: params[:id] %>
   <%= f.submit "New Project" %>
 <% end %>
 

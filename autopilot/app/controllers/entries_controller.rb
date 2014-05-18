@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
 
+
 	def show
 	@user = User.find(params[:id])
 	@entry = Entry.find(params[:id])

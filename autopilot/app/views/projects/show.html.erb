@@ -2,7 +2,7 @@
 <!-- TODO: This form does not create an entry with an association to the project -->
 
 
-<%= form_for @entry, url: "/users/#{@user.id}/projects/#{@project.id}/entries", method: "POST" do |f| %>
+<%= form_for @entry, url: "/users/#{@user.id}/projects/#{:self.id}/entries", method: "POST" do |f| %>
   <%= f.text_field :category, {placeholder: "category"} %>
   <%= f.text_field :content, {placeholder: "content"} %>
   <%= f.hidden_field :project_id, value: @project.id %>
@@ -15,6 +15,7 @@
 	<% @project.entries.each do |entry| %>
 	    <li>
 	    <p><%= link_to entry.content, "/users/#{params[:user_id]}/entries/#{params[:id]}" %></p>
+	    
 
 
 
