@@ -2,13 +2,13 @@ class UsersController < ApplicationController
 
 
 	def show
-		@user = User.find(3)
+		@user = User.find(params[:id])
 
 		@entries = Entry.order(id: :desc)
-	    @entry = Entry.new
+	    @entry = Entry.find(params[:id])
 
 	    @projects = Project.order(id: :desc)
-	    @project = Project.new
+	    @project = Project.find(params[:id])
 
 	end
 

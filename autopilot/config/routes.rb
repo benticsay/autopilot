@@ -18,6 +18,8 @@ get "/users/:user_id/projects/:id" => "projects#show", as: :project
 
 post "/users/:user_id/projects" => "projects#create"
 
+post "/users/:user_id/projects/:project_id/entries" => "entries#create"
+
 end
 
 # # show project

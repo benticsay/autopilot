@@ -1,15 +1,28 @@
 class EntriesController < ApplicationController
 
 	def show
-
+	@user = User.find(params[:id])
 	@entry = Entry.find(params[:id])
 		
 	end
 
 	def create
+		
 		 Entry.create(entry_attributes)
+# COME BACK TO THIS REDIRECT
+		# redirect_to "/users/#{params[:id]}"
+	end
 
-		redirect_to user_path
+	def edit
+		
+	end
+
+	def update
+		
+	end
+
+	def destroy
+		
 	end
 
   private

@@ -1,5 +1,21 @@
+<!-- TODO: make this a partial -->
+<!-- TODO: This form does not create an entry with an association to the project -->
 
 
+<%= form_for @entry, url: "/users/#{@user.id}/projects/#{@project.id}/entries", method: "POST" do |f| %>
+  <%= f.text_field :category, {placeholder: "category"} %>
+  <%= f.text_field :content, {placeholder: "content"} %>
+  <%= f.hidden_field :project_id, value: @project.id %>
+  <%= f.submit "New Entry" %>
+<% end %>
 
 <p><%= @project.title %></p>
 <p><%= @project.logline %></p>
+<p>
+	<% @project.entries.each do |entry| %>
+	    <li>
+	    <p><%= entry.content %></p>
+	    <%= link_to "edit post", "/users/#{@user.id}/projects/#{@project.id}/entries/#{id}" %>
+		</li>
+	<% end %>
+</p>
