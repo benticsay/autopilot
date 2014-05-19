@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
 
 	    @joiner = Joiner.new
 
-	@entries = current_user.entries.where(project_id: nil).order(id: :asc) 
+	@entries = current_user.entries.where(project_id: nil).order(id: :asc) or  
 
 		
 	end
@@ -42,13 +42,13 @@ class ProjectsController < ApplicationController
 		redirect_to "/user/@{current_user.id}"
 	end
 
-  private
+	private
 
-  # strong params
-  def project_attributes
-    # whitelisting parts of the params hash, that are DB-safe
-    params.require(:project).permit(:title, :logline, :user_id)
-  end
+	# strong params
+	def project_attributes
+	# whitelisting parts of the params hash, that are DB-safe
+	params.require(:project).permit(:title, :logline, :user_id)
+	end
 
 
 end
