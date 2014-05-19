@@ -1,0 +1,35 @@
+     Parameters:
+
+{"utf8"=>"✓",
+ "authenticity_token"=>"/QQSR5juBE0idNYnIFsxvNdaLS4sjwp9IYHxLDehV9M=",
+ "entry"=>{"category"=>"test project entry",
+ "content"=>"test project entry",
+ "project_id"=>"10",
+ "user_id"=>"8"},
+ "commit"=>"New Entry",
+ "user_id"=>"8",
+ "project_id"=>"10"}
+
+ <%= button_to "Delete", { action: "delete", id: @entry.id }, method: :delete, data: { confirm: "Are you sure?" } %>
+
+      Prefix Verb   URI Pattern                  Controller#Action
+     # log_out GET    /log_out(.:format)           sessions#destroy
+     #  log_in GET    /log_in(.:format)            sessions#new
+     # sign_up GET    /sign_up(.:format)           users#new
+     #    root GET    /                            users#new
+    #    users GET    /users(.:format)             users#index
+    #          POST   /users(.:format)             users#create
+    # new_user GET    /users/new(.:format)         users#new
+   edit_user GET    /users/:id/edit(.:format)    users#edit
+        user GET    /users/:id(.:format)         users#show
+             PATCH  /users/:id(.:format)         users#update
+             PUT    /users/:id(.:format)         users#update
+             DELETE /users/:id(.:format)         users#destroy
+    sessions GET    /sessions(.:format)          sessions#index
+             POST   /sessions(.:format)          sessions#create
+ new_session GET    /sessions/new(.:format)      sessions#new
+edit_session GET    /sessions/:id/edit(.:format) sessions#edit
+     session GET    /sessions/:id(.:format)      sessions#show
+             PATCH  /sessions/:id(.:format)      sessions#update
+             PUT    /sessions/:id(.:format)      sessions#update
+             DELETE /sessions/:id(.:format)      sessions#destroy

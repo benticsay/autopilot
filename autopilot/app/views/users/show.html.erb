@@ -1,38 +1,46 @@
+
+
+<h2>Entries</h2>
+
 <!-- TODO: make this a partial -->
-<%= form_for @entry, url: "/users/#{params[:user_id]}/entries", method: "POST" do |f| %>
+<%= form_for @entry, url: "/users/#{current_user.id}/entries", method: "POST" do |f| %>
   <%= f.text_field :category, {placeholder: "category"} %>
   <%= f.text_field :content, {placeholder: "content"} %>
-  <%= f.hidden_field :user_id, value: params[:id] %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit "New Entry" %>
 <% end %>
 
-<h2>Entries</h2>
 <ul class="entries">
   <% @entries.each do |entry| %>
     <li>
     <h5><%= entry.category %></h5>
 
-    <p><%= link_to entry.content, "/users/#{params[:id]}/entries/#{entry.id}" %></p>
+    <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
+<%= link_to "Edit", "/users/#{current_user.id}/entries/#{@entry.id}/edit" %>
 
+<%= link_to("Destroy", "/users/#{current_user.id}/entries/#{params[:id]}", method: :delete) %>
     </li>
   <% end %>
 </ul>
 
 
 
+
+
+<h2>Projects</h2>
+
 <!-- TODO: make this a partial -->
-<%= form_for @project, url: "/users/#{params[:user_id]}/projects", method: "POST" do |f| %>
+<%= form_for @project, url: "/users/#{current_user.id}/projects", method: "POST" do |f| %>
   <%= f.text_field :title, {placeholder: "title"} %>
   <%= f.text_field :logline, {placeholder: "logline"} %>
-  <%= f.hidden_field :user_id, value: params[:id] %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit "New Project" %>
 <% end %>
 
-<h2>Project</h2>
 <ul class="projects">
   <% @projects.each do |project| %>
     <li>
-      <h4><%= link_to project.title, "/users/#{params[:user_id]}/projects/#{@project.id}", :controller => :projects, :action => :show %></h4>
+      <h4><%= link_to project.title, "/users/#{current_user.id}/projects/#{project.id}" %></h4>
 
 
       <p>

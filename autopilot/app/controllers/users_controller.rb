@@ -16,12 +16,13 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = @current_user
 
-		@entries = User.find(params[:id]).entries.order(id: :desc)
+		@current_user = current_user
+
+		@entries = current_user.entries.order(id: :desc)
 	    @entry = Entry.new
 
-	    @projects = User.find(params[:id]).projects.order(id: :desc)
+	    @projects = current_user.projects.order(id: :desc)
 	    @project = Project.new
 
 	end

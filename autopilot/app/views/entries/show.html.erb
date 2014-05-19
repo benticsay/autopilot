@@ -3,4 +3,7 @@
 
 <p><%= @entry.content %></p>
 
+<%= link_to "Edit", "/users/#{current_user.id}/entries/#{@entry.id}/edit" %>
 
+
+<%= link_to("Destroy", "/users/#{current_user.id}/entries/#{params[:id]}", method: :delete) %>

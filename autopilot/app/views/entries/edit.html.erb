@@ -1,0 +1,6 @@
+<%= form_for @entry, url: "/users/#{current_user.id}/entries/#{@entry.id}", method: "patch" do |f| %>
+  <%= f.text_field :category, {placeholder: "category"} %>
+  <%= f.text_field :content, {placeholder: "content"} %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Edit Entry" %>
+<% end %>

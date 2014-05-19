@@ -1,11 +1,12 @@
 <!-- TODO: make this a partial -->
-<!-- TODO: This form does not create an entry with an association to the project -->
 
 
-<%= form_for @entry, url: "/users/#{@user.id}/projects/#{:self.id}/entries", method: "POST" do |f| %>
+<%= form_for @entry, url: "/users/#{current_user.id}/projects/#{@project.id}/entries", method: "POST" do |f| %>
   <%= f.text_field :category, {placeholder: "category"} %>
   <%= f.text_field :content, {placeholder: "content"} %>
   <%= f.hidden_field :project_id, value: @project.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <%= f.submit "New Entry" %>
 <% end %>
 
@@ -14,11 +15,28 @@
 <p>
 	<% @project.entries.each do |entry| %>
 	    <li>
-	    <p><%= link_to entry.content, "/users/#{params[:user_id]}/entries/#{params[:id]}" %></p>
-	    
-
-
+	    <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
 
 		</li>
 	<% end %>
 </p>
+
+<h4>UNUSED ENTRIES</h4>
+<ul class="entries">
+  <% @entries.each do |entry| %>
+    <li>
+	    <h5><%= entry.category %></h5>
+
+	    <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
+			<%= form_for @joiner, url: "/users/#{current_user.id}/projects/#{@project.id}/entries", method: "post" do |f| %>
+			  <%= f.hidden_field :project_id, value: @project.id %>
+			  <%= f.hidden_field :entry_id, value: entry.id %>
+			  <%= f.submit "ADD TO PROJECT" %>
+			<% end %>
+
+    </li>
+  <% end %>
+</ul>
+
+
+
