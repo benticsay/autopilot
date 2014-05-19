@@ -8,14 +8,18 @@ Rails.application.routes.draw do
 	resources :users
 	resources :sessions
 
-# create routes
-	post "/users/:user_id/entries" => "entries#create"
-	post "/users/:user_id/projects" => "projects#create"
-	post "/users/:user_id/projects/:project_id/entries" => "joiners#create"
-
 # show routes
 	get "/users/:user_id/entries/:id" => "entries#show"
 	get "/users/:user_id/projects/:id" => "projects#show"
+
+# create routes
+	post "/users/:user_id/entries" => "entries#create"
+	post "/users/:user_id/projects" => "projects#create"
+
+	#this is conflicting with add new entry on project page - add to project route
+	post "/users/:user_id/projects/:project_id/entries/:id/joiners" => "joiners#create"
+
+
 
 #create an entry from within a project
 	post "/users/:user_id/projects/:project_id/entries" => "entries#create"
@@ -27,8 +31,13 @@ patch "/users/:user_id/entries/:id" => "entries#update"
 get "/users/:user_id/projects/:id/edit" => "projects#edit"
 patch "/users/:user_id/projects/:id" => "projects#update"
 
-get "/users/:user_id/projects/:project_id/entries/:id" => "entries#edit"
-patch "/users/:user_id/projects/:project_id/entries/:id" => "entries#update"
+# get "/users/:user_id/projects/:project_id/entries/:id" => "entries#edit"
+patch "/users/:user_id/projects/:project_id/entries/:id" => "joiners#update"
+
+
+
+
+
 
 #delete routes
 delete "/users/:user_id/entries/:id" => "entries#destroy"

@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
 
 	    @joiner = Joiner.new
 
-	@entries = current_user.entries.where(project_id: nil).order(id: :asc)
+	@entries = current_user.entries.where(project_id: nil).order(id: :asc) 
 
 		
 	end

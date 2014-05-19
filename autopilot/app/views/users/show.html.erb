@@ -16,9 +16,9 @@
     <h5><%= entry.category %></h5>
 
     <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
-<%= link_to "Edit", "/users/#{current_user.id}/entries/#{@entry.id}/edit" %>
+<%= link_to "Edit", "/users/#{current_user.id}/entries/#{entry.id}/edit" %>
 
-<%= link_to("Destroy", "/users/#{current_user.id}/entries/#{params[:id]}", method: :delete) %>
+<%= link_to("Destroy", "/users/#{current_user.id}/entries/#{entry.id}", method: :delete) %>
     </li>
   <% end %>
 </ul>

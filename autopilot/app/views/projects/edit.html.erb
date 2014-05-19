@@ -1,1 +1,6 @@
-edit.html.erb
+<%= form_for @project, url: "/users/#{current_user.id}/projects/#{@project.id}", method: "patch" do |f| %>
+  <%= f.text_field :title, {placeholder: "title"} %>
+  <%= f.text_field :logline, {placeholder: "logline"} %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Edit Entry" %>
+<% end %>

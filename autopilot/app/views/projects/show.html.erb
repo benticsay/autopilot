@@ -12,6 +12,11 @@
 
 <p><%= @project.title %></p>
 <p><%= @project.logline %></p>
+
+<%= link_to "Edit", "/users/#{current_user.id}/projects/#{@project.id}/edit" %>
+
+<%= link_to("Destroy", "/users/#{current_user.id}/projects/#{@project.id}", method: :delete) %>
+
 <p>
 	<% @project.entries.each do |entry| %>
 	    <li>
@@ -28,9 +33,9 @@
 	    <h5><%= entry.category %></h5>
 
 	    <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
-			<%= form_for @joiner, url: "/users/#{current_user.id}/projects/#{@project.id}/entries", method: "post" do |f| %>
+			<%= form_for @joiner, url: "/users/#{current_user.id}/projects/#{@project.id}/entries/#{entry.id}/joiners", method: "post" do |f| %>
 			  <%= f.hidden_field :project_id, value: @project.id %>
-			  <%= f.hidden_field :entry_id, value: entry.id %>
+			  <%= f.hidden_field :entry_id, value: params[:id] %>
 			  <%= f.submit "ADD TO PROJECT" %>
 			<% end %>
 
