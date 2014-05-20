@@ -6,7 +6,6 @@ class JoinersController < ApplicationController
 		@joiner = Joiner.create({				
 					project_id: params[:project_id],
 					entry_id: params[:id],
-					position: nil,
 					rating: 0
 					})
 
@@ -27,7 +26,7 @@ class JoinersController < ApplicationController
 	  # strong params
 	  def joiner_attributes
 	    # whitelisting parts of the params hash, that are DB-safe
-	    params.require(:joiner).permit(:project_id, :entry_id, :position, :rating)
+	    params.require(:joiner).permit(:project_id, :entry_id, :rating)
 	  end
 
 

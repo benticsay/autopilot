@@ -1,0 +1,90 @@
+<%= form_for @joiner, url: "/users/:user_id/joiners", method: "post" do |f| %>
+  <%= f.hidden_field :project_id, value: @project.id %>
+  <%= f.hidden_field :entry_id, value: @entry.id %>
+  <%= f.submit "Add TO PROJECT" %>
+<% end %>
+
+
+<%= form_for @joiner, url: "/users/:user_id/projects/:project_id/entries/:id", method: "patch" do |f| %>
+  <%= f.hidden_field :project_id, value: @project.id %>
+  <%= f.hidden_field :entry_id, value: @entry.id %>
+  <%= f.submit "Add TO PROJECT" %>
+<% end %>
+
+
+@entry = Entry.find(params[:id])
+
+
+
+
+#   # show individual project
+
+
+#   # create project entry
+
+
+
+
+# #user homepage
+# # get "/users/:id" => "users#show"
+
+
+
+
+
+
+# get "/users/:user_id/projects/:id" => "projects#show"
+
+# get "/users/:user_id/projects/:id/edit" => "projects#edit"
+
+# patch "/users/:user_id/projects/:id" => "projects#update"
+
+# delete "/users/:user_id/projects/:id" => "projects#destroy"
+
+
+
+
+# #user project page
+
+
+
+
+# get "/users/:user_id/projects/:project_id/entries/:id" => "entries#edit"
+
+# patch "/users/:user_id/projects/:project_id/entries/:id" => "entries#update"
+
+# delete "/users/:user_id/projects/:project_id/entries/:id" => "entries#destroy"
+
+
+
+# #user entry page
+
+
+
+# get "/users/:user_id/entries/:id/edit" => "entries#edit"
+
+# patch "/users/:user_id/entries/:id/edit" => "entries#update"
+
+# delete "/users/:user_id/entries/:id/edit" => "entries#destroy"
+
+
+
+  # # get ALL users - edited to show all projects
+  # get "/users" => "users#index"
+
+  # # get ONE user
+  # get "/users/:id" => "users#show"
+
+  # # show NEW user form
+  # get "/user/new" => "users#new"
+
+  # # process chef CREATE action from form
+  # post "/users" => "users#create"
+
+  # # show LOGIN form
+  # get "/user/login" => "users#login"
+
+  # # process login form
+  # post "/user/login" => "users#process_login"
+
+

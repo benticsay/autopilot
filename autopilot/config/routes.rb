@@ -16,111 +16,33 @@ Rails.application.routes.draw do
 	post "/users/:user_id/entries" => "entries#create"
 	post "/users/:user_id/projects" => "projects#create"
 
-	#this is conflicting with add new entry on project page - add to project route
+	#add to project route
 	post "/users/:user_id/projects/:project_id/entries/:id/joiners" => "joiners#create"
 
 
 
-#create an entry from within a project
+	#create an entry from within a project
 	post "/users/:user_id/projects/:project_id/entries" => "entries#create"
 
-#edit routes
-get "/users/:user_id/entries/:id/edit" => "entries#edit"
-patch "/users/:user_id/entries/:id" => "entries#update"
+	#edit routes
+	get "/users/:user_id/entries/:id/edit" => "entries#edit"
+	patch "/users/:user_id/entries/:id" => "entries#update"
 
-get "/users/:user_id/projects/:id/edit" => "projects#edit"
-patch "/users/:user_id/projects/:id" => "projects#update"
+	get "/users/:user_id/projects/:id/edit" => "projects#edit"
+	patch "/users/:user_id/projects/:id" => "projects#update"
 
-# get "/users/:user_id/projects/:project_id/entries/:id" => "entries#edit"
-patch "/users/:user_id/projects/:project_id/entries/:id" => "joiners#update"
-
-
+	# get "/users/:user_id/projects/:project_id/entries/:id" => "entries#edit"
+	patch "/users/:user_id/projects/:project_id/entries/:id" => "joiners#update"
 
 
+	#delete routes
+	delete "/users/:user_id/entries/:id" => "entries#destroy"
+
+	delete "/users/:user_id/projects/:id" => "projects#destroy"
+
+	delete "/users/:user_id/projects/:project_id/entries/:id" => "entries#destroy"
 
 
-#delete routes
-delete "/users/:user_id/entries/:id" => "entries#destroy"
-
-delete "/users/:user_id/projects/:id" => "projects#destroy"
-
-delete "/users/:user_id/projects/:project_id/entries/:id" => "entries#destroy"
-
-
-
-
-
-
-
-
-# 	# show individual project
-
-
-# 	# create project entry
-
-
-
-
-# #user homepage
-# # get "/users/:id" => "users#show"
-
-
-
-
-
-
-# get "/users/:user_id/projects/:id" => "projects#show"
-
-# get "/users/:user_id/projects/:id/edit" => "projects#edit"
-
-# patch "/users/:user_id/projects/:id" => "projects#update"
-
-# delete "/users/:user_id/projects/:id" => "projects#destroy"
-
-
-
-
-# #user project page
-
-
-
-
-# get "/users/:user_id/projects/:project_id/entries/:id" => "entries#edit"
-
-# patch "/users/:user_id/projects/:project_id/entries/:id" => "entries#update"
-
-# delete "/users/:user_id/projects/:project_id/entries/:id" => "entries#destroy"
-
-
-
-# #user entry page
-
-
-
-# get "/users/:user_id/entries/:id/edit" => "entries#edit"
-
-# patch "/users/:user_id/entries/:id/edit" => "entries#update"
-
-# delete "/users/:user_id/entries/:id/edit" => "entries#destroy"
-
-end
-
-	# # get ALL users - edited to show all projects
-	# get "/users" => "users#index"
-
-	# # get ONE user
-	# get "/users/:id" => "users#show"
-
-	# # show NEW user form
-	# get "/user/new" => "users#new"
-
-	# # process chef CREATE action from form
-	# post "/users" => "users#create"
-
-	# # show LOGIN form
-	# get "/user/login" => "users#login"
-
-	# # process login form
-	# post "/user/login" => "users#process_login"
+	end
 
 

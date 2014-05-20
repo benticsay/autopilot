@@ -18,7 +18,7 @@
 <%= link_to("Destroy", "/users/#{current_user.id}/projects/#{@project.id}", method: :delete) %>
 
 <p>
-	<% @project.entries.each do |entry| %>
+	<% @project.ordered_entries.each do |entry| %>
 	    <li>
 	    <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
 

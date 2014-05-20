@@ -3,15 +3,14 @@ class ProjectsController < ApplicationController
 
 
 	def show
-	@entry = Entry.new
-	@project = Project.find(params[:id])
+		@entry = Entry.new
+		@project = Project.find(params[:id])
 
 
-	    @joiner = Joiner.new
+		@joiner = Joiner.new
 
-	@entries = current_user.entries.where(project_id: nil).order(id: :asc) or  
-
-		
+		# @entries = current_user.entries.where(project_id: nil).order(id: :asc)
+		@entries = @project.ordered_entries
 	end
 
 
