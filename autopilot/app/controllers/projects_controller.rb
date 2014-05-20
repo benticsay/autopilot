@@ -7,10 +7,18 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 
 
-		@joiner = Joiner.new
+		@unused_entries = []
+			Entry.all.each do |entry_instance|
+				if entry_instance.projects = []
+				@unused_entries << entry_instance
+				# else
+				end
+				# binding.pry
+		end
 
-		# @entries = current_user.entries.where(project_id: nil).order(id: :asc)
-		@entries = @project.ordered_entries
+
+		# @entries = Entry.all.joiners.where(project_id: nil).order(id: :asc)
+		# @entries = @project.ordered_entries # <- instance of PJ's created 'ordered_entries' method
 	end
 
 

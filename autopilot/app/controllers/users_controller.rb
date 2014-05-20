@@ -20,10 +20,10 @@ class UsersController < ApplicationController
 		@current_user = current_user
 
 		@entries = current_user.entries.order(id: :desc)
-	    @entry = Entry.new
+    @entry = Entry.new
 
-	    @projects = current_user.projects.order(id: :desc)
-	    @project = Project.new
+    @projects = current_user.projects.order(id: :desc)
+    @project = Project.new
 
 	end
 

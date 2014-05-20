@@ -1,0 +1,26 @@
+<%= form_for @entry, url: "/users/#{current_user.id}/projects/#{@project.id}/entries", method: "POST" do |f| %>
+  <%= f.text_field :category, {placeholder: "category"} %>
+  <%= f.text_field :content, {placeholder: "content"} %>
+  <%= f.hidden_field :user_id, value: current_user.id %> 
+  <%= f.hidden_field :position, value: @entry.increment(:position, by = 1) %>
+  <%= f.submit "New Entry" %>
+<% end %>
+
+# add entry form on user#show page
+
+<%= form_for @entry, url: "/users/#{current_user.id}/entries", method: "POST" do |f| %>
+  <%= f.text_field :category, {placeholder: "category"} %>
+  <%= f.text_field :content, {placeholder: "content"} %>
+  <%= f.hidden_field :user_id, value: current_user.id %> 
+  <%= f.hidden_field :position, value: @entry.increment(:position, by = 1) %>
+  <%= f.submit "New Entry" %>
+<% end %>
+
+
+
+
+      <%= form_for @joiner, url: "/users/#{current_user.id}/projects/#{@project.id}/entries/#{entry.id}/joiners", method: "post" do |f| %>
+        <%= f.hidden_field :project_id, value: @project.id %>
+        <%= f.hidden_field :entry_id, value: params[:id] %>
+        <%= f.submit "ADD TO PROJECT" %>
+      <% end %>

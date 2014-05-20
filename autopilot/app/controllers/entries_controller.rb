@@ -10,15 +10,18 @@ class EntriesController < ApplicationController
 	def create
 
 
-		@entry = Entry.new(entry_attributes)
-		@entry.save
+		@entry = Entry.create(entry_attributes)
 
-		Joiner.create({				
-					project_id: params[:project_id], # <- will this return empty or nil if there is no project_id params ?
-					entry_id: params[:id],
-					rating: 0
-					})
-		
+		# .new(entry_attributes)
+		# @entry.save
+
+			if params[:project_id] != nil
+				Joiner.create({				
+							project_id: params[:project_id], # <- will this return empty or nil if there is no project_id params ?
+							entry_id: params[:id],
+							rating: 0
+							})
+			end		
 #insert redirect conditional here:
 	#if params[:project_id] = nil
 		redirect_to "/users/#{current_user.id}" 
@@ -68,7 +71,7 @@ class EntriesController < ApplicationController
 
   # strong params
   def entry_attributes
-    params.require(:entry).permit(:category, :content, :user_id)
+    params.require(:entry).permit(:category, :content, :user_id, :position)
   end
 
 

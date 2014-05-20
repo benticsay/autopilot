@@ -1,43 +1,28 @@
 <!-- TODO: make this a partial -->
 
 
-<%= form_for @entry, url: "/users/#{current_user.id}/projects/#{@project.id}/entries", method: "POST" do |f| %>
-  <%= f.text_field :category, {placeholder: "category"} %>
-  <%= f.text_field :content, {placeholder: "content"} %>
-  <%= f.hidden_field :project_id, value: @project.id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
 
-  <%= f.submit "New Entry" %>
-<% end %>
-
-<p><%= @project.title %></p>
-<p><%= @project.logline %></p>
-
+<h3><%= @project.title %></h3>
+<h4><%= @project.logline %></h4>
 <%= link_to "Edit", "/users/#{current_user.id}/projects/#{@project.id}/edit" %>
-
 <%= link_to("Destroy", "/users/#{current_user.id}/projects/#{@project.id}", method: :delete) %>
 
 <p>
-	<% @project.ordered_entries.each do |entry| %>
-	    <li>
-	    <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
-
+	<% @project.entries.each do |entry| %>
+    <li>
+    <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
 		</li>
 	<% end %>
 </p>
 
 <h4>UNUSED ENTRIES</h4>
 <ul class="entries">
-  <% @entries.each do |entry| %>
+  <% @unused_entries.each do |entry| %>
     <li>
 	    <h5><%= entry.category %></h5>
 
 	    <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
-			<%= form_for @joiner, url: "/users/#{current_user.id}/projects/#{@project.id}/entries/#{entry.id}/joiners", method: "post" do |f| %>
-			  <%= f.hidden_field :project_id, value: @project.id %>
-			  <%= f.hidden_field :entry_id, value: params[:id] %>
-			  <%= f.submit "ADD TO PROJECT" %>
-			<% end %>
+
 
     </li>
   <% end %>
