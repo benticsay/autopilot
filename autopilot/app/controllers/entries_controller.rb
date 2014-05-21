@@ -11,7 +11,7 @@ class EntriesController < ApplicationController
 
 
 		@entry = Entry.create(entry_attributes)
-		
+
 
 		# .new(entry_attributes)
 		# @entry.save
@@ -72,7 +72,7 @@ class EntriesController < ApplicationController
 
   # strong params
   def entry_attributes
-    params.require(:entry).permit(:category, :content, :user_id, :position)
+    params.require(:entry).permit(:category, :content, :user_id)
   end
 
 

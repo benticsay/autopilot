@@ -11,7 +11,7 @@ class Entry < ActiveRecord::Base
 
       # new_pos = params[:new_pos].to_i - 1 
       # entry_to_move = self.entries.find(:entry_id)
-      # binding.pry
+
       project_array = project_array_original.map{|x| x} 
 
       i = 0
