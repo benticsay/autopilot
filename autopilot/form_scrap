@@ -47,3 +47,27 @@
 
 <%= link_to("REMOVE FROM PROJECT", "/users/#{current_user.id}/joiners", method: :delete) %>
 
+
+
+
+
+
+<%= form_for @entry, url: "/users/#{current_user.id}/projects/#{@project.id}/entries", method: "POST" do |f| %>
+  <%= f.text_field :category, {placeholder: "category"} %>
+  <%= f.text_field :content, {placeholder: "content"} %>
+  <%= f.hidden_field :user_id, value: current_user.id %> 
+  <%= f.hidden_field :position, value: Entry.last.increment(:position, by = 1) %>
+  <%= f.submit "New Entry" %>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
 
 	has_many :entries, through: :joiners
 	has_many :joiners
-  
+
   # def ordered_entries
   #   entries = self.entries
   #   entries.sort do |entry_a, entry_b|
@@ -12,4 +12,18 @@ class Project < ActiveRecord::Base
   #   end
   # end
 
+
+
+
+
+
+
+
+
 end
+
+
+
+
+
+

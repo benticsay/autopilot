@@ -7,7 +7,6 @@
   <%= f.text_field :category, {placeholder: "category"} %>
   <%= f.text_field :content, {placeholder: "content"} %>
   <%= f.hidden_field :user_id, value: current_user.id %> 
-  <%= f.hidden_field :position, value: @entry.increment(:position, by = 1) %>
   <%= f.submit "New Entry" %>
 <% end %>
 

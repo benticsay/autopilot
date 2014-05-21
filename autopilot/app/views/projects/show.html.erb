@@ -9,11 +9,17 @@
 
 
 <p>
-	<% @project.entries.each do |entry| %>
+	<% @project_entries.each do |entry| %>
     <li>
 
     <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
     <%= link_to("REMOVE FROM PROJECT", "/users/#{current_user.id}/joiners/#{entry.id}", method: :delete) %>
+
+# FORM FOR POSITION CHANGE
+
+
+
+
 		</li>
 	<% end %>
 </p>

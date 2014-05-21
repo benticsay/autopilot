@@ -11,9 +11,7 @@ class ProjectsController < ApplicationController
 			Entry.all.each do |entry_instance|
 				if entry_instance.projects == []
 				@unused_entries << entry_instance
-				# else
 				end
-				# binding.pry
 		end
 
 
@@ -47,6 +45,17 @@ class ProjectsController < ApplicationController
 		@project.destroy
 
 		redirect_to "/user/@{current_user.id}"
+	end
+
+
+	def rearrange
+		project = Project.find(params[:id])
+		project_array = project.entries
+		Entry.move(project_array, new_pos, entry_to_move)
+
+		@project_entries = project.entries.order(position: :desc)
+
+		redirect_to "/users/current_user.id/projects/#{project.id}"
 	end
 
 	private

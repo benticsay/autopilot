@@ -1,3 +1,11 @@
+
+  # post "/users/:user_id/projects/:project_id/joiners" => "joiners#create"
+
+
+  #add to project route
+  # post "/users/:user_id/projects/:project_id/entries/:id/joiners" => "joiners#create"
+
+
 <%= form_for @joiner, url: "/users/:user_id/joiners", method: "post" do |f| %>
   <%= f.hidden_field :project_id, value: @project.id %>
   <%= f.hidden_field :entry_id, value: @entry.id %>

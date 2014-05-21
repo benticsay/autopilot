@@ -5,12 +5,9 @@ class JoinersController < ApplicationController
 
 		@joiner = Joiner.create(joiner_attributes)
 
-		# {				
-		# 			project_id: params[:project_id],
-		# 			entry_id: params[:entry_id],
-		# 			rating: 0
-		# 			})
-# binding.pry
+		# @entry.position = (project.entries.order(position: :desc).first.position || 0) + 1
+		# @entry.save!
+
 		redirect_to "/users/#{current_user.id}/projects/#{@joiner.project_id}"
 	end
 

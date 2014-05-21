@@ -11,6 +11,7 @@ class EntriesController < ApplicationController
 
 
 		@entry = Entry.create(entry_attributes)
+		
 
 		# .new(entry_attributes)
 		# @entry.save

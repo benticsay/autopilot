@@ -15,33 +15,27 @@ Rails.application.routes.draw do
 # create routes
 	post "/users/:user_id/entries" => "entries#create"
 	post "/users/:user_id/projects" => "projects#create"
-
 	post "/users/:user_id/joiners" => "joiners#create"
 
-	# post "/users/:user_id/projects/:project_id/joiners" => "joiners#create"
-
-
-	#add to project route
-	# post "/users/:user_id/projects/:project_id/entries/:id/joiners" => "joiners#create"
 
 	#create an entry from within a project
 	# post "/users/:user_id/projects/:project_id/entries" => "entries#create"
 
 	#edit routes
 	get "/users/:user_id/entries/:id/edit" => "entries#edit"
-	patch "/users/:user_id/entries/:eid" => "entries#update"
+	patch "/users/:user_id/entries/:id" => "entries#update"
 
 	get "/users/:user_id/projects/:id/edit" => "projects#edit"
 	patch "/users/:user_id/projects/:id" => "projects#update"
 
-	# get "/users/:user_id/projects/:project_id/entries/:id" => "entries#edit"
+	get "/users/:user_id/projects/:project_id/entries/:id" => "entries#edit"
 	patch "/users/:user_id/projects/:project_id/entries/:id" => "joiners#update"
 
 
 	#delete routes
 	delete "/users/:user_id/entries/:id" => "entries#destroy"
 
-	# delete "/users/:user_id/projects/:id" => "projects#destroy"
+	delete "/users/:user_id/projects/:id" => "projects#destroy"
 
 	delete "/users/:user_id/projects/:project_id/entries/:id" => "entries#destroy"
 
