@@ -7,13 +7,25 @@ class Entry < ActiveRecord::Base
 
 
 
-    def self.move(project_array, new_pos, entry_to_move)
+    def self.move(project_array_original, new_pos, entry_to_move)
 
-      new_pos = params[:new_pos]
-      entry_to_move = self.entries.find(:entry_id)
-      project_array.insert(params[:new_pos], entry_to_move.content.to_s)
-      project_array.delete_at(entry_to_move.content.to_s)
-      
+      # new_pos = params[:new_pos].to_i - 1 
+      # entry_to_move = self.entries.find(:entry_id)
+      # binding.pry
+      project_array = project_array_original.map{|x| x} 
+
+      i = 0
+      project_array.each do |entry|
+        entry.position = i
+        i += 1
+        project_array << entry
+      end
+
+
+      project_array.delete_at(entry_to_move.position)
+      project_array.insert(new_pos, entry_to_move)
+
+
       i = 0
       project_array.each do |entry|
         entry.position = i

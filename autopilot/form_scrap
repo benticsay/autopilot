@@ -48,7 +48,11 @@
 <%= link_to("REMOVE FROM PROJECT", "/users/#{current_user.id}/joiners", method: :delete) %>
 
 
-
+<%= form_tag("/users/current_user.id/projects/#{@project.id}/entries/entry.id/rearrange", method: "get") do %>
+  <%= text_field_tag(:new_pos, "Move To Position:") %>
+  <%= hidden_field_tag(:entry_to_move, #{entry.id}) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
 
 

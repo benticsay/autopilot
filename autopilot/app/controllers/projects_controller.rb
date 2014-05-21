@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
 		@entry = Entry.new
 		@project = Project.find(params[:id])
 		@joiner = Joiner.new
+		@project_entries = @project.entries.order(position: :desc)
 
 		@unused_entries = []
 			Entry.all.each do |entry_instance|
@@ -49,10 +50,26 @@ class ProjectsController < ApplicationController
 
 
 	def rearrange
-		project = Project.find(params[:id])
+		project = Project.find(params[:project_id])
 		project_array = project.entries
-		Entry.move(project_array, new_pos, entry_to_move)
+		new_pos = params[:new_pos].to_i - 1
+		entry_to_move = Entry.find(params[:entry_to_move])
 
+    # project_array.insert(new_pos, entry_to_move)
+    # project_array.delete_at(entry_to_move)
+
+    # i = 0
+    # project_array.each do |entry|
+    #   entry.position = i
+    #   i += 1
+    #   project_array << entry
+    # end
+
+
+
+
+
+		Entry.move(project_array, new_pos, entry_to_move)
 		@project_entries = project.entries.order(position: :desc)
 
 		redirect_to "/users/current_user.id/projects/#{project.id}"

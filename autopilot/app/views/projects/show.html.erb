@@ -13,6 +13,12 @@
     <li>
 
     <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
+
+      <%= form_tag("/users/#{current_user.id}/projects/#{@project.id}/entries/#{entry.id}/rearrange", method: "get") do %>
+        <%= text_field_tag(:new_pos) %>
+          <%= hidden_field_tag(:entry_to_move, entry.id) %>
+        <%= submit_tag("Move To") %>
+      <% end %>
     <%= link_to("REMOVE FROM PROJECT", "/users/#{current_user.id}/joiners/#{entry.id}", method: :delete) %>
 
 # FORM FOR POSITION CHANGE
