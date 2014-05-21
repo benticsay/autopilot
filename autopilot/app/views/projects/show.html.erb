@@ -7,10 +7,13 @@
 <%= link_to "Edit", "/users/#{current_user.id}/projects/#{@project.id}/edit" %>
 <%= link_to("Destroy", "/users/#{current_user.id}/projects/#{@project.id}", method: :delete) %>
 
+
 <p>
 	<% @project.entries.each do |entry| %>
     <li>
+
     <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
+    <%= link_to("REMOVE FROM PROJECT", "/users/#{current_user.id}/joiners/#{entry.id}", method: :delete) %>
 		</li>
 	<% end %>
 </p>
@@ -22,6 +25,14 @@
 	    <h5><%= entry.category %></h5>
 
 	    <p><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></p>
+
+      <%= form_for @joiner, url: "/users/#{current_user.id}/joiners", method: "post" do |f| %>
+        <%= f.hidden_field :project_id, value: @project.id %>
+        <%= f.hidden_field :entry_id, value: entry.id %>        
+        <%= f.hidden_field :rating, value: 0 %>
+        <%= f.submit "ADD TO PROJECT" %>
+
+      <% end %>
 
 
     </li>

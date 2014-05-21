@@ -18,7 +18,7 @@ class EntriesController < ApplicationController
 			if params[:project_id] != nil
 				Joiner.create({				
 							project_id: params[:project_id], # <- will this return empty or nil if there is no project_id params ?
-							entry_id: params[:id],
+							entry_id: @entry.id,
 							rating: 0
 							})
 			end		

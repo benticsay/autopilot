@@ -6,6 +6,16 @@
   <%= f.submit "New Entry" %>
 <% end %>
 
+<%= form_for @entry, url: "/users/#{current_user.id}/projects/#{@project.id}/entries", method: "POST" do |f| %>
+  <%= f.text_field :category, {placeholder: "category"} %>
+  <%= f.text_field :content, {placeholder: "content"} %>
+  <%= f.hidden_field :user_id, value: current_user.id %> 
+  <%= f.hidden_field :position, value: Entry.last.increment(:position, by = 1) %>
+  <%= f.submit "New Entry" %>
+<% end %>
+
+
+
 # add entry form on user#show page
 
 <%= form_for @entry, url: "/users/#{current_user.id}/entries", method: "POST" do |f| %>
@@ -17,10 +27,23 @@
 <% end %>
 
 
-
-
-      <%= form_for @joiner, url: "/users/#{current_user.id}/projects/#{@project.id}/entries/#{entry.id}/joiners", method: "post" do |f| %>
+      <%= form_for @joiner, url: "/users/:user_id/projects/:project_id/entries/:id/joiners", method: "post" do |f| %>
         <%= f.hidden_field :project_id, value: @project.id %>
-        <%= f.hidden_field :entry_id, value: params[:id] %>
+        <%= f.hidden_field :entry_id, value: entry.id %>        
+        <%= f.hidden_field :rating, value: 0 %>
         <%= f.submit "ADD TO PROJECT" %>
-      <% end %>
+
+<%= form_tag ("/users/#{current_user.id}/projects/#{:id}/joiners", method: "post") do %>
+  <%= hidden_field_tag(:project_id, @project.id) %>
+  <%= hidden_field_tag(:entry_id, entry.id) %>
+  <%= hidden_field_tag(:rating, "0") %>
+<% end %>
+
+          <%= form_tag ("/users/#{current_user.id}/projects/#{params[:id]}/joiners", method: "post") do %>
+            <%= hidden_field_tag(:project_id, @project.id) %>
+            <%= hidden_field_tag(:entry_id, entry.id) %>
+            <%= hidden_field_tag(:rating, "0") %>
+          <% end %>
+
+<%= link_to("REMOVE FROM PROJECT", "/users/#{current_user.id}/joiners", method: :delete) %>
+

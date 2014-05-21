@@ -1,24 +1,27 @@
 class JoinersController < ApplicationController
 
 	def create
-		@project = Project.find(params[:project_id])
+		# @project = Project.find(params[:project_id])
 
-		@joiner = Joiner.create({				
-					project_id: params[:project_id],
-					entry_id: params[:id],
-					rating: 0
-					})
+		@joiner = Joiner.create(joiner_attributes)
 
-		redirect_to "/users/#{current_user.id}/projects/#{@project.id}"
+		# {				
+		# 			project_id: params[:project_id],
+		# 			entry_id: params[:entry_id],
+		# 			rating: 0
+		# 			})
+# binding.pry
+		redirect_to "/users/#{current_user.id}/projects/#{@joiner.project_id}"
 	end
 
 
-		# def update
-		# 	@joiner = Joiner.find(params[:id])
-		# 	@entry.update_attributes(entry_attributes)
+		def destroy
 
-		# 	redirect_to "/users/#{current_user.id}/projects/#{@project.id}"
-		# end
+
+			@joiner = Joiner.where(entry_id: params[:id]).first
+			@joiner.destroy
+			redirect_to "/users/#{current_user.id}/projects/#{@joiner.project_id}"
+		end
 
 
 	  private

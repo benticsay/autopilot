@@ -5,11 +5,11 @@ class ProjectsController < ApplicationController
 	def show
 		@entry = Entry.new
 		@project = Project.find(params[:id])
-
+		@joiner = Joiner.new
 
 		@unused_entries = []
 			Entry.all.each do |entry_instance|
-				if entry_instance.projects = []
+				if entry_instance.projects == []
 				@unused_entries << entry_instance
 				# else
 				end
