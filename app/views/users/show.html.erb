@@ -1,0 +1,51 @@
+
+<div class = "section group">
+
+  <div class = "col span_1_of_2">
+    <h2>Entries</h2>
+
+    <!-- TODO: make this a partial -->
+<%= render partial: "entries/entryform", locals: { entry: @entry } %>
+
+    <ul class="entries">
+      <% @entries.each do |entry| %>
+        <li>
+        <h4><%= entry.category %></h4>
+
+        <h3><%= link_to entry.content, "/users/#{current_user.id}/entries/#{entry.id}" %></h3>
+    <%= link_to "Edit", "/users/#{current_user.id}/entries/#{entry.id}/edit" %>
+
+    <%= link_to("Destroy", "/users/#{current_user.id}/entries/#{entry.id}", method: :delete) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+
+
+  <div class = "col span_1_of_2">
+    <h2>Projects</h2>
+
+    <!-- TODO: make this a partial -->
+    <%= form_for @project, url: "/users/#{current_user.id}/projects", method: "POST" do |f| %>
+      <%= f.text_field :title, {placeholder: "title"} %>
+      <%= f.text_field :logline, {placeholder: "logline"} %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit "New Project" %>
+    <% end %>
+
+    <ul class="projects">
+      <% @projects.each do |project| %>
+        <li>
+          <h4><%= link_to project.title, "/users/#{current_user.id}/projects/#{project.id}" %></h4>
+
+
+          <p>
+            <%= project.logline %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

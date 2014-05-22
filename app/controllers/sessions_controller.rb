@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       flash.now.alert = "Invalid email or password"
       render "new"
     end
+    # redirect_to "/users/#{current_user.id}"
   end
 
   def destroy
