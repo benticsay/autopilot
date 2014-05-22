@@ -18,10 +18,15 @@ class Entry < ActiveRecord::Base
       project_array_original.each do |entry|
         entry.position = i
         i += 1
+        entry.save!
       end
 
 
-      project_array_original.delete_at(entry_to_move.position.to_i)
+
+      old_position = entry_to_move.position.to_i - 1
+
+      project_array_original.delete_at(old_position)
+       binding.pry
       project_array_original.insert(new_pos, entry_to_move)
 
 
@@ -29,8 +34,9 @@ class Entry < ActiveRecord::Base
       project_array_original.each do |entry|
         entry.position = i
         i += 1
-        entry.save
+        entry.save!
       end
+      # binding.pry
 
       # 
     end

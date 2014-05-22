@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 	post "/users/:user_id/projects" => "projects#create"
 	post "/users/:user_id/joiners" => "joiners#create"
 
-get "/users/:user_id/projects/:project_id/entries/:entry_id/rearrange" => "projects#rearrange"
+	get "/users/:user_id/projects/:project_id/entries/:entry_id/rearrange" => "projects#rearrange"
 
 
 	#create an entry from within a project

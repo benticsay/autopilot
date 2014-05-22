@@ -54,7 +54,7 @@ class ProjectsController < ApplicationController
 		new_pos = params[:new_pos].to_i - 1
 		entry_to_move = Entry.find(params[:entry_to_move])
 
-		project_array = project.entries.map{|x| x} 
+		project_array = project.entries.order(position: :desc).map{|x| x} 
 		Entry.move(project_array, new_pos, entry_to_move)
 		@project_entries = project.entries.order(position: :desc)
 
