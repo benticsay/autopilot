@@ -12,27 +12,27 @@ class Entry < ActiveRecord::Base
       # new_pos = params[:new_pos].to_i - 1 
       # entry_to_move = self.entries.find(:entry_id)
 
-      project_array = project_array_original.map{|x| x} 
+#      project_array = project_array_original.map{|x| x} 
 
       i = 0
-      project_array.each do |entry|
+      project_array_original.each do |entry|
         entry.position = i
         i += 1
-        project_array << entry
       end
 
 
-      project_array.delete_at(entry_to_move.position)
-      project_array.insert(new_pos, entry_to_move)
+      project_array_original.delete_at(entry_to_move.position.to_i)
+      project_array_original.insert(new_pos, entry_to_move)
 
 
       i = 0
-      project_array.each do |entry|
+      project_array_original.each do |entry|
         entry.position = i
         i += 1
-        project_array << entry
+        entry.save
       end
 
+      # 
     end
 
       # entry.save

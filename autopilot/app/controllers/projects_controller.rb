@@ -51,9 +51,14 @@ class ProjectsController < ApplicationController
 
 	def rearrange
 		project = Project.find(params[:project_id])
-		project_array = project.entries
 		new_pos = params[:new_pos].to_i - 1
 		entry_to_move = Entry.find(params[:entry_to_move])
+
+		project_array = project.entries.map{|x| x} 
+		Entry.move(project_array, new_pos, entry_to_move)
+		@project_entries = project.entries.order(position: :desc)
+
+		redirect_to "/users/#{current_user.id}/projects/#{project.id}"
 
     # project_array.insert(new_pos, entry_to_move)
     # project_array.delete_at(entry_to_move)
@@ -69,10 +74,7 @@ class ProjectsController < ApplicationController
 
 
 
-		Entry.move(project_array, new_pos, entry_to_move)
-		@project_entries = project.entries.order(position: :desc)
-
-		redirect_to "/users/current_user.id/projects/#{project.id}"
+		
 	end
 
 	private

@@ -8,6 +8,7 @@
 <%= link_to("Destroy", "/users/#{current_user.id}/projects/#{@project.id}", method: :delete) %>
 
 
+<ol>
 <p>
 	<% @project_entries.each do |entry| %>
     <li>
@@ -20,15 +21,10 @@
         <%= submit_tag("Move To") %>
       <% end %>
     <%= link_to("REMOVE FROM PROJECT", "/users/#{current_user.id}/joiners/#{entry.id}", method: :delete) %>
-
-# FORM FOR POSITION CHANGE
-
-
-
-
 		</li>
 	<% end %>
 </p>
+</ol>
 
 <h4>UNUSED ENTRIES</h4>
 <ul class="entries">
