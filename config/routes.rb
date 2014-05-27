@@ -8,6 +8,23 @@ Rails.application.routes.draw do
 	resources :users
 	resources :sessions
 
+# resources :users do 
+#   member do
+# 		resources :joiners, only: [:create, :delete]
+#     resources :entries, except: [:new, :index]
+#     resources :projects, except: [:new, :index] do
+#       member do
+#         resources :entries, except: [:new, :index]
+#       end
+#     end 
+#   end
+# end
+
+# get "/users/:user_id/projects/:project_id/entries/:entry_id/rearrange" => "projects#rearrange"
+# patch "/users/:user_id/projects/:project_id/entries/:id" => "joiners#update"
+
+	# get "/users" => "users#index", :as => "users"
+
 # show routes
 	get "/users/:user_id/entries/:id" => "entries#show"
 	get "/users/:user_id/projects/:id" => "projects#show"
